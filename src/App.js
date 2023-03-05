@@ -1,24 +1,30 @@
-import logo from './logo.svg';
+
+import { Route, Routes } from 'react-router-dom';
+import About from './About/About';
 import './App.css';
+import Leyout from './Layout/Layout';
+import ChuckNorris from './ChuckNorris/ChuckNorris';
+import Countries from './Countries/Countries';
+import Home from './Home/Home';
+
+import '@fontsource/roboto/300.css';
+import '@fontsource/roboto/400.css';
+import '@fontsource/roboto/500.css';
+import '@fontsource/roboto/700.css';
+import CountryApiSearch from './CountryApiSearch/CountryApiSearch';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Routes>
+      <Route path='/' element={<Leyout />}>
+        <Route index element={<Home/>}/>
+        <Route path='chuckNorris/' element={<ChuckNorris/>}/>
+        <Route path='countries/' element={<Countries/>}>
+          <Route path=':country_name/' element={<CountryApiSearch/>}/>
+        </Route>
+        <Route path='about/' element={<About/>}/>
+      </Route>  
+    </Routes>
   );
 }
 
